@@ -1,0 +1,85 @@
+<odoo>
+    <data>
+        <record id="evaluation_customer_list" model="ir.ui.view">
+            <field name="name">evaluation.customer.list</field>
+            <field name="model">evaluation.customer</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="ch_number"/>
+                    <field name="amount"/>
+                    <field name="phone"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="evaluation_customer_form" model="ir.ui.view">
+            <field name="name">evaluation.customer.form</field>
+            <field name="model">evaluation.customer</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                       <button name="btn_confirm" string="Confirm" type="object" states="draft"/>
+                       <button name="btn_cancel" string="Cancel" type="object" states="draft,confirm"/>
+                        <button name="btn_reset" string="Reset to Draft" type="object" states="draft,cancel"/>
+                       <field name="state" widget="statusbar" statusbar_visible="draft,confirm,cancel"/>
+                    </header>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="ch_number"/>
+                        </group>
+                        <group>
+                            <field name="amount"/>
+                            <field name="phone"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+       <record model="ir.actions.act_window" id="evaluation_customer_action_window">
+              <field name="name">evaluation customer</field>
+              <field name="res_model">evaluation.customer</field>
+              <field name="view_mode">tree,form</field>
+        </record>
+        <record id="new_customer_list" model="ir.ui.view">
+            <field name="name">new.customer.list</field>
+            <field name="model">new.customer</field>
+            <field name="arch" type="xml">
+                <tree>
+
+                    <field name="cust_name"/>
+                    <field name="nphone"/>
+                </tree>
+            </field>
+        </record>
+        <record id="new_customer_view_form" model="ir.ui.view">
+            <field name="name">new.customer.view.form</field>
+            <field name="model">new.customer</field>
+            <field name="arch" type="xml">
+                <form string="">
+               <header>
+                    <button name="btn_confirm" string="confirm" type="object"/>
+                </header>
+                    <group>
+
+                         <field name="cust_name"/>
+                         <field name="nphone"/>
+                  </group>
+
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="new_customer_action_window">
+              <field name="name">new customer</field>
+              <field name="res_model">new.customer</field>
+              <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem name="Customer Details" id="evaluation_customer_menu_root"/>
+        <menuitem name="Customers" id="evaluation_customer_menu_1" action="evaluation_customer_action_window" parent="evaluation_customer_menu_root"/>
+        <menuitem name="Details" id="new_customer_menu_1" action="new_customer_action_window" parent="evaluation_customer_menu_root"/>
+    </data>
+</odoo>
